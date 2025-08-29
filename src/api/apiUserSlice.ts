@@ -30,7 +30,7 @@ export const apiUserSlice = createApi({
     }),
 
     // For the Get User by ID
-    getUserById: builder.query<User[], number>({
+    getUserById: builder.query<User, number>({
       query: (id) => `/api/userId/${id}`,
       providesTags: (_results, _error, id) => [{ type: "Users", id }],
     }),

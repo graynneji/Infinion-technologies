@@ -41,7 +41,7 @@ const navigationItems: NavigationItem[] = [
 
 const SideBar: React.FC<SideBarProps> = ({ handleNavigationClick }) => {
     return (
-        <div className="w-[233px] bg-[#1e1e1e]">
+        <div className="w-[233px] bg-[#1e1e1e] hidden md:block">
             {/* Logo */}
             <h1 className="pt-[27px] pl-[45px] text-[32px] font-bold font-kavoon bg-[linear-gradient(90deg,#3B82F6_0%,rgba(147,51,234,0.5)_50%,rgba(147,51,234,0)_100%)] bg-clip-text text-transparent">useID</h1>
 

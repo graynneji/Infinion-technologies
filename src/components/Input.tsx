@@ -10,6 +10,7 @@ interface SearchInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, '
     leftIcon?: React.ComponentType<{ className?: string }>;
     rightIcon?: React.ComponentType<{ className?: string }>;
     className?: string;
+    label?: React.ComponentType<{ className?: string }>;
 }
 
 interface VariantConfig {
@@ -21,14 +22,15 @@ interface VariantConfig {
 }
 
 // Reusable SearchInput Component
-const SearchInput: React.FC<SearchInputProps> = ({
+const Input: React.FC<SearchInputProps> = ({
     placeholder = "Search",
     value,
     onChange,
     variant = "searchOne",
-    className = "",
+    className,
     leftIcon: LeftIcon,
     rightIcon: RightIcon,
+    label: Label,
     ...props
 }) => {
     const variants: Record<VariantType, VariantConfig> = {
@@ -52,7 +54,8 @@ const SearchInput: React.FC<SearchInputProps> = ({
     const currentVariant = variants[variant];
 
     return (
-        <div className={`${currentVariant.container} ${className}`}>
+        <div className={`${currentVariant.container}`}>
+            {Label && <Label />}
             {/* Left Icon */}
             {LeftIcon && (
                 <LeftIcon className={currentVariant.iconSize} />
@@ -64,7 +67,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className={currentVariant.input}
+                className={`${className ?? currentVariant.input}`}
                 {...props}
             />
 
@@ -76,4 +79,4 @@ const SearchInput: React.FC<SearchInputProps> = ({
     );
 };
 
-export default SearchInput;
+export default Input;
