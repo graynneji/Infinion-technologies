@@ -40,6 +40,7 @@ const AddUserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             setFormData({ name: '', location: '', dateOfBirth: '' });
             onClose();
         } catch (err) {
+            //using type guard to check if the error is of type FetchBaseQueryError and display in the UI
             if (isFetchBaseQueryError(err)) {
                 const fetchError = err as import('@reduxjs/toolkit/query').FetchBaseQueryError;
                 if (typeof fetchError.data === 'string') {
@@ -70,7 +71,7 @@ const AddUserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                         label={() => <label className="block text-[#ffffff] text-sm mb-1.25">Name</label>}
                         onChange={(e) => handleChange("name", e.target.value)}
                         placeholder="E.g John"
-                        className="w-full bg-[#1e1e1e] border border-[#343434] rounded-lg px-4 py-3 text-white placeholder:text-[#6c6c6c] placeholder:text-[14px] focus:outline-none focus:border-[#555]"
+                        className="w-full bg-[#1e1e1e] border border-[#343434] font-nunito rounded-lg px-4 py-3 text-white placeholder:text-[#6c6c6c] placeholder:text-[14px] focus:outline-none focus:border-[#555]"
                     />
 
                     <Input
@@ -78,7 +79,7 @@ const AddUserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                         label={() => <label className="block text-[#ffffff] text-sm mb-1.25">Location</label>}
                         onChange={(e) => handleChange("location", e.target.value)}
                         placeholder="E.g Boston, USA"
-                        className="w-full bg-[#1e1e1e] border border-[#343434] rounded-lg px-4 py-3 text-white placeholder:text-[#6c6c6c] placeholder:text-[14px] focus:outline-none focus:border-[#555]"
+                        className="w-full bg-[#1e1e1e] border border-[#343434] font-nunito rounded-lg px-4 py-3 text-white placeholder:text-[#6c6c6c] placeholder:text-[14px] focus:outline-none focus:border-[#555]"
                     />
 
                     <Input
@@ -86,7 +87,7 @@ const AddUserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                         label={() => <label className="block text-[#ffffff] text-sm mb-1.25">Date of Birth</label>}
                         onChange={(e) => handleChange("dateOfBirth", e.target.value)}
                         placeholder="E.g 26/04/1945"
-                        className="w-full bg-[#1e1e1e] border border-[#343434] rounded-lg px-4 py-3 text-white placeholder:text-[#6c6c6c] placeholder:text-[14px] focus:outline-none focus:border-[#555]"
+                        className="w-full bg-[#1e1e1e] border border-[#343434] font-nunito rounded-lg px-4 py-3 text-white placeholder:text-[#6c6c6c] placeholder:text-[14px] focus:outline-none focus:border-[#555]"
                     />
 
                 </div>

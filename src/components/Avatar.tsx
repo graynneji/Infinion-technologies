@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+//I created a reusable Avatar component to display user profile images with customizable styles.
 interface AvatarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
     src?: string;
     alt?: string;

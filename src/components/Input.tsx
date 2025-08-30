@@ -1,5 +1,7 @@
 import React, { type InputHTMLAttributes } from 'react';
 
+
+//here i created a reusable SearchInput Component 
 type VariantType = 'searchOne' | 'searchTwo';
 
 interface SearchInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {

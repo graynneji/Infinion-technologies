@@ -1,3 +1,4 @@
+//these are my helper functions for formatting phone numbers and dates of birth
 export function formatPhoneNumber(phone: string): string {
   if (!phone) return "";
 

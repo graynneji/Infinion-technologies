@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { User } from "../api/apiUserSlice";
-import Worker from "../workers/searchWorker?worker"; // Vite syntax
+import Worker from "../workers/searchWorker?worker";
 
 export const useSearchWorker = (users: User[] = []) => {
   console.log(users, "best");
@@ -18,12 +18,14 @@ export const useSearchWorker = (users: User[] = []) => {
     };
   }, []);
 
+  //i initiated a render when users data changes
   useEffect(() => {
     if (users?.length) {
-      setResults(users); // initialize results with all users
+      setResults(users);
     }
   }, [users]);
 
+  //send message to the worker (another thread)
   const search = (query: string) => {
     if (workerRef.current) {
       workerRef.current.postMessage({

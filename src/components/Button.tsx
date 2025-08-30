@@ -1,6 +1,6 @@
 import React, { type ButtonHTMLAttributes, type ReactNode } from 'react';
-// import { type LucideIcon } from 'lucide-react';
 
+//i created a reusable Button component with different variants, sizes, and optional icons.
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'dark';
 type ButtonSize = 'small' | 'medium' | 'large';
 type IconPosition = 'left' | 'right';

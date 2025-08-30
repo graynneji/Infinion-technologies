@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
-
+//Using RTK Query to define an API slice for user data with endpoints for fetching, creating, and managing users.
 export interface User {
   name: string;
   email: string;
@@ -9,7 +9,7 @@ export interface User {
   avatar: string;
   id: number;
 }
-
+//Inclused a retry mechanism to handle transient errors during API calls.
 // Wrap baseQuery with retry
 const baseQueryWithRetry = retry(
   fetchBaseQuery({

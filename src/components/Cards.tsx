@@ -1,7 +1,7 @@
 import type { User } from "../api/apiUserSlice";
 import Avatar from "./Avatar";
 
-
+//I created a reusable Card component to display user information in a card format.
 interface CardProps {
     user: User;
     handleUserClick: (id: number) => void;
@@ -10,7 +10,7 @@ interface CardProps {
 const Cards: React.FC<CardProps> = ({ user, handleUserClick }) => {
     return (
         <div
-            key={user.id}
+            key={user.id + "-" + user.name}
             className="
     bg-[#1E1E1E] 
     rounded-[12px] 

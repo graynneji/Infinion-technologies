@@ -93,7 +93,7 @@ const UserDirectory: React.FC = () => {
                             <p className="text-[#b3b4b3]">Find a list of users below</p>
                         </div>
                         <Button
-                            className="bg-white cursor-pointer hidden md:flex text-[#030500] px-3 py-2 rounded-xl mt-auto w-auto items-center justify-center h-[42px] space-x-2 font-medium text-[15px] transition-colors"
+                            className="bg-white cursor-pointer font-figtree hidden md:flex text-[#030500] px-3 py-2 rounded-xl mt-auto w-auto items-center justify-center h-[42px] space-x-2 font-medium text-[15px] transition-colors"
                             onClick={handleAddNewUser}
                             icon={() => <PlusIcon className="w-4.5 h-4.5" />}
                         >
@@ -110,6 +110,7 @@ const UserDirectory: React.FC = () => {
                     </div>
                     {/* User Grid */}
                     <div className="w-full h-[calc(100vh-300px)]">
+                        {/* included here a refetch button to reload users if the fetch fails */}
                         {isLoading && <Spinner />}
                         {isFetching && !isLoading && <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Spinner /></div>}
                         {error && !isLoading && !isFetching && (
@@ -119,6 +120,7 @@ const UserDirectory: React.FC = () => {
                             </div>
                         )}
                         <Suspense fallback={<Spinner />}>
+                            {/* used react-virtualized and autosizer to optimize rendering of large lists by only rendering visible items */}
                             <AutoSizer>
                                 {({ width, height }) => {
                                     const GAP_X = 20;
@@ -181,6 +183,8 @@ const UserDirectory: React.FC = () => {
                             </AutoSizer>
                         </Suspense>
                     </div>
+
+                    {/* Modals */}
                     <AddUserModal isOpen={isModalOpen} onClose={handleClose} />
                     {selectedUser && (
                         <UserDetailsModal

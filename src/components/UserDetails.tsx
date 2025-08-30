@@ -7,7 +7,7 @@ import Cancel from "../assets/Frame(3).svg?react";
 import Avatar from "./Avatar";
 import { formatDateOfBirth, formatPhoneNumber } from "../utils";
 
-
+//handled all individual user details in a modal popup
 export interface UserDetailsModalProps extends ModalProps {
     user: User;
 }
