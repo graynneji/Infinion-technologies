@@ -41,8 +41,8 @@ const UserDirectory: React.FC = () => {
     };
 
     const handleUserClick = (userId: number): void => {
-        setSelectedUserId(userId);
         setIsUserDetailsOpen(true);
+        setSelectedUserId(userId);
     };
 
     const handleNavigationClick = (label: string): void => {
@@ -186,20 +186,20 @@ const UserDirectory: React.FC = () => {
 
                     {/* Modals */}
                     <AddUserModal isOpen={isModalOpen} onClose={handleClose} />
-                    {selectedUser && (
-                        <UserDetails
-                            isOpen={isUserDetailsOpen}
-                            onClose={() => {
-                                setIsUserDetailsOpen(false);
-                                setSelectedUserId(undefined);
-                            }}
-                            user={selectedUser}
-                            selectedUserError={selectedUserError}
-                            selectedLoading={selectedLoading}
-                            selectedFetching={selectedFetching}
-                            byIdRefetch={byIdRefetch}
-                        />
-                    )}
+
+                    <UserDetails
+                        isOpen={isUserDetailsOpen}
+                        onClose={() => {
+                            setIsUserDetailsOpen(false);
+                            setSelectedUserId(undefined);
+                        }}
+                        user={selectedUser}
+                        selectedUserError={selectedUserError}
+                        selectedLoading={selectedLoading}
+                        selectedFetching={selectedFetching}
+                        byIdRefetch={byIdRefetch}
+                    />
+
                 </div>
             </div>
         </div>
