@@ -4,9 +4,11 @@ export function formatPhoneNumber(phone: string): string {
   const alreadyFormatted = /^\+1 \(\d{3}\) \d{3}-\d{4}$/.test(phone);
   if (alreadyFormatted) return phone;
 
-  const digits = phone.replace(/\D/g, "");
+  const cleaned = phone.split(/x|ext/i)[0];
 
-  if (digits.length < 10) return phone;
+  const digits = cleaned.replace(/\D/g, "");
+
+  if (digits.length !== 10) return phone;
 
   const main = digits.slice(0, 10);
   const ext = digits.length > 10 ? digits.slice(10) : "";

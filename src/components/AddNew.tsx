@@ -3,6 +3,8 @@ import Input from "./Input";
 import Modal, { type ModalProps } from "./Modal";
 import { useCreateUserMutation } from "../api/apiUserSlice";
 import Button from "./Button";
+import Cancel from "../assets/Frame(3).svg?react";
+
 function isFetchBaseQueryError(error: unknown): error is import('@reduxjs/toolkit/query').FetchBaseQueryError {
     return (
         typeof error === 'object' &&
@@ -54,7 +56,10 @@ const AddUserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className="p-6">
-                <h2 className="text-white text-[17px] leading-[28px] font-bold mb-[45px]">Enter User Details</h2>
+                <div className="flex justify-between items-center mb-[45px]">
+                    <h2 className="text-white text-[17px] leading-[28px] font-bold ">Enter User Details</h2>
+                    <Cancel className="w-5 h-5" onClick={onClose} />
+                </div>
                 {error && <span className="text-red-500 text-sm mb-1 flex justify-center">
                     {String(errorAddUser)}
                 </span>}
