@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, useState, type JSX } from 'react'
+import { lazy, Suspense, useState, type JSX } from 'react'
 import React from 'react';
 import DashboardIcon from "../assets/mage_dashboard.svg?react";
 import ListIcon from "../assets/List_Unordered.svg?react";
@@ -6,12 +6,12 @@ import PlusIcon from "../assets/heroicons-outline_plus.svg?react";
 import SearchIcon from "../assets/iconoir_search.svg?react";
 import Input from './Input';
 import SideBar from './SideBar';
-import { useGetUserByIdQuery, useGetUsersQuery, type User } from '../api/apiUserSlice';
+import { useGetUserByIdQuery, useGetUsersQuery } from '../api/apiUserSlice';
 import { useSearchWorker } from '../hooks/useSearchWorker';
 import Spinner from './Spinner';
 import AddUserModal from './AddNew';
 import Button from './Button';
-import { UserDetailsModal } from './UserDetails';
+import UserDetails from './UserDetails';
 import Avatar from './Avatar';
 import Profile from "../assets/f6a64218e22438ff1eedb61c4e3259ea8bc1f3b7.jpg"
 import Bell from "../assets/Frame 1618868734.svg?react";
@@ -24,7 +24,7 @@ const UserDirectory: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean | undefined>(false)
     const { data: users, error, isLoading, isFetching, refetch } = useGetUsersQuery();
     const [selectedUserId, setSelectedUserId] = useState<number>();
-    const { data: selectedUser, error: selectedUserError, isLoading: selectedLoading, isFetching: selectedFetching } = useGetUserByIdQuery(selectedUserId!, { skip: selectedUserId === undefined })
+    const { data: selectedUser, error: selectedUserError, isLoading: selectedLoading, isFetching: selectedFetching, refetch: byIdRefetch } = useGetUserByIdQuery(selectedUserId!, { skip: selectedUserId === undefined })
     const { results, search } = useSearchWorker(users)
     const [isUserDetailsOpen, setIsUserDetailsOpen] = useState(false);
 
@@ -187,13 +187,17 @@ const UserDirectory: React.FC = () => {
                     {/* Modals */}
                     <AddUserModal isOpen={isModalOpen} onClose={handleClose} />
                     {selectedUser && (
-                        <UserDetailsModal
+                        <UserDetails
                             isOpen={isUserDetailsOpen}
                             onClose={() => {
                                 setIsUserDetailsOpen(false);
                                 setSelectedUserId(undefined);
                             }}
                             user={selectedUser}
+                            selectedUserError={selectedUserError}
+                            selectedLoading={selectedLoading}
+                            selectedFetching={selectedFetching}
+                            byIdRefetch={byIdRefetch}
                         />
                     )}
                 </div>

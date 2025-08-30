@@ -6,15 +6,31 @@ import type { User } from "../api/apiUserSlice";
 import Cancel from "../assets/Frame(3).svg?react";
 import Avatar from "./Avatar";
 import { formatDateOfBirth, formatPhoneNumber } from "../utils";
+import Spinner from "./Spinner";
+import Button from "./Button";
+import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import type { SerializedError } from "@reduxjs/toolkit";
 
 //handled all individual user details in a modal popup
 export interface UserDetailsModalProps extends ModalProps {
     user: User;
+    selectedUserError?: FetchBaseQueryError | SerializedError | undefined;
+    selectedLoading?: boolean;
+    selectedFetching?: boolean;
+    byIdRefetch?: () => void;
 }
 
-export const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ isOpen, onClose, user }) => {
+const UserDetails: React.FC<UserDetailsModalProps> = ({ isOpen, onClose, user, selectedFetching, selectedLoading, selectedUserError, byIdRefetch }) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
+            {selectedLoading && <Spinner />}
+            {selectedFetching && !selectedLoading && <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Spinner /></div>}
+            {selectedUserError && !selectedLoading && !selectedFetching && (
+                <div className="flex flex-col items-center justify-center h-full space-y-4">
+                    <h1 className="text-white ">Failed to load users</h1>
+                    <Button onClick={byIdRefetch} className="bg-white cursor-pointer text-[#030500] rounded-lg py-2 px-3 mt-2 font-medium hover:bg-gray-100 transition-colors">Retry</Button>
+                </div>
+            )}
             <div className="p-6">
                 <div className="mb-6 flex justify-between items-center">
 
@@ -23,7 +39,6 @@ export const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ isOpen, onCl
                 </div>
 
                 <div className="mb-8">
-                    {/* <div className="w-20 h-20 bg-gray-600 rounded-full mx-auto mb-4 overflow-hidden"> */}
                     {user.avatar ? (
                         <Avatar src={user.avatar} alt={user.name} className="w-20 h-20 bg-gray-600 rounded-full mx-auto mb-5.25 overflow-hidden" />
                     ) : (
@@ -31,8 +46,6 @@ export const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ isOpen, onCl
                             {user.name.charAt(0).toUpperCase()}
                         </div>
                     )}
-                    {/* </div> */}
-
                     <div className="bg-gradient-to-r from-[#3B82F6] to-[#9333EA] text-white px-3 py-1 text-sm font-medium w-max mx-auto mb-1">
                         {user.name}
                     </div>
@@ -73,3 +86,4 @@ export const UserDetailsModal: React.FC<UserDetailsModalProps> = ({ isOpen, onCl
         </Modal>
     );
 };
+export default UserDetails;

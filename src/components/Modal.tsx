@@ -1,6 +1,5 @@
 
-import Cancel from "../assets/Frame(3).svg?react";
-
+// import Cancel from "../assets/Frame(3).svg?react";
 //I created a reusable Modal component to display content in an overlay with a darkened background.
 export interface ModalProps {
     isOpen: boolean | undefined;
@@ -11,7 +10,7 @@ export interface ModalProps {
 const Modal: React.FC<ModalProps> = ({
     children,
     isOpen,
-    onClose
+    // onClose
 }) => {
     if (!isOpen) return null;
 
