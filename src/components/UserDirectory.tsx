@@ -103,7 +103,7 @@ const UserDirectory: React.FC = () => {
                     </div>
 
                     {/* Search Bar */}
-                    <div className="mb-3.5 rounded-xl flex h-[62px] items-center bg-[#1e1e1e] border border-[#181818]">
+                    <div className="mb-3.5 rounded-xl flex md:h-[62px] items-center bg-[#1e1e1e] border border-[#181818]">
 
                         <Input placeholder="Search user by name" onChange={handleSearchChange} variant="searchTwo" rightIcon={renderRightIcon} leftIcon={renderLeftIcon} />
 
