@@ -74,7 +74,7 @@ const UserDirectory: React.FC = () => {
 
             {/* Main Content */}
             <div className="flex-1">
-                <Menu className="w-5 h-5 mt-[23px] mb-[35px] ml-4 block md:hidden" />
+                <Menu className="w-6 h-6 mt-[23px] mb-[35px] ml-4 block md:hidden" />
                 {/* Header */}
                 <div className="mb-[35px] py-6 px-10 items-center justify-between sticky top-0 z-10 h-[92px] hidden md:flex">
                     <Input leftIcon={renderLeftIcon} />
