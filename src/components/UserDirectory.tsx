@@ -109,7 +109,7 @@ const UserDirectory: React.FC = () => {
 
                     </div>
                     {/* User Grid */}
-                    <div className="w-full h-[calc(100vh-300px)]">
+                    <div className="w-full h-[calc(100vh-300px)] scrollbar-thin">
                         {/* included here a refetch button to reload users if the fetch fails */}
                         {isLoading && <Spinner />}
                         {isFetching && !isLoading && <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><Spinner /></div>}
